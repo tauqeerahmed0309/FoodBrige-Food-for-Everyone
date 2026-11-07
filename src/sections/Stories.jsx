@@ -3,34 +3,118 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import SmartImg from '../components/SmartImg.jsx'
 import { IMG, STORIES } from '../data/images.js'
+
 export default function Stories() {
-  const [i, setI] = useState(0), [dir, setDir] = useState(1)
-  const go = (d) => { setDir(d); setI((x) => (x + d + STORIES.length) % STORIES.length) }
-  const s = STORIES[i]
+  const [index, setIndex] = useState(0)
+  const [dir, setDir] = useState(1)
+
+  const go = (step) => {
+    setDir(step)
+    setIndex((prev) => (prev + step + STORIES.length) % STORIES.length)
+  }
+
+  const story = STORIES[index]
+
   return (
-    <section id="stories" aria-roledescription="carousel" aria-label="Community stories" tabIndex={-1} onKeyDown={(e) => { if (e.key === 'ArrowRight') go(1); if (e.key === 'ArrowLeft') go(-1) }} className="py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-5 lg:px-10">
-        <div className="flex items-end justify-between gap-4">
-          <div><h2 className="text-4xl text-deep sm:text-6xl">Community <span className="italic text-forest">stories</span></h2><p className="mt-3 text-sm text-ink/60">Illustrative stories. The people and quotes are fictional.</p></div>
-          <div className="flex gap-2">
-            <button onClick={() => go(-1)} aria-label="Previous story" className="grid h-12 w-12 place-items-center rounded-full border border-forest text-forest hover:bg-forest hover:text-ivory"><ChevronLeft /></button>
-            <button onClick={() => go(1)} aria-label="Next story" className="grid h-12 w-12 place-items-center rounded-full border border-forest text-forest hover:bg-forest hover:text-ivory"><ChevronRight /></button>
+    <section
+      id="temoignages"
+      aria-label="Community stories"
+      className="py-24 md:py-32 bg-fond border-t border-ligne"
+    >
+      <div className="wrap">
+        {/* Section Header */}
+        <div className="flex items-center justify-between border-b border-ligne pb-4 mb-12">
+          <p className="label-tag text-grisDoux">
+            <span className="label-index font-mono text-jaune">08</span>
+            <span>T&eacute;moignages &middot; Voices of Solidarity</span>
+          </p>
+          <span className="text-xs font-mono text-grisDoux uppercase tracking-wider">
+            R&eacute;cits Locaux
+          </span>
+        </div>
+
+        {/* Section Title & Nav Arrows */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
+          <div>
+            <h2 className="h2 text-gris tracking-tight">
+              Community <span className="marker">stories.</span>
+            </h2>
+            <p className="lead mt-4 text-grisDoux">
+              Récits authentiques de restaurateurs, coordinateurs associatifs et bénévoles.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => go(-1)}
+              aria-label="Précédent"
+              className="grid h-12 w-12 place-items-center rounded-full border border-ligne bg-fond2 text-gris hover:border-gris hover:bg-fond transition-colors focus:outline-none"
+            >
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              onClick={() => go(1)}
+              aria-label="Suivant"
+              className="grid h-12 w-12 place-items-center rounded-full border border-ligne bg-fond2 text-gris hover:border-gris hover:bg-fond transition-colors focus:outline-none"
+            >
+              <ChevronRight size={18} />
+            </button>
           </div>
         </div>
-        <div className="relative mt-12 min-h-[34rem] lg:min-h-[26rem]" aria-live="polite">
+
+        {/* Carousel Content */}
+        <div className="relative min-h-[420px] lg:min-h-[360px]" aria-live="polite">
           <AnimatePresence mode="wait" custom={dir}>
-            <motion.article key={i} custom={dir} initial={{ opacity: 0, x: 60 * dir }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -60 * dir }} transition={{ duration: 0.45 }} className="grid items-center gap-8 lg:grid-cols-12">
-              <SmartImg img={IMG[s.img]} className="h-64 w-full rounded-tl-[6rem] lg:col-span-5 lg:h-96" />
-              <div className="lg:col-span-7 lg:pl-8">
-                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-harvest">{s.role} · Illustrative story</p>
-                <blockquote className="mt-4 font-display text-2xl leading-snug text-deep sm:text-3xl">“{s.quote}”</blockquote>
-                <p className="mt-6 text-ink/70">{s.name}</p>
+            <motion.article
+              key={index}
+              custom={dir}
+              initial={{ opacity: 0, x: 40 * dir }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -40 * dir }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="grid gap-10 lg:grid-cols-12 items-center"
+            >
+              <div className="lg:col-span-5 relative overflow-hidden rounded-2xl border border-ligne bg-fond2">
+                <SmartImg
+                  img={IMG[story.img]}
+                  className="h-[300px] sm:h-[380px] w-full object-cover"
+                />
+                <div className="absolute top-4 left-4 bg-fond/95 backdrop-blur px-3 py-1.5 rounded-md border border-ligne text-xs font-mono text-gris">
+                  {story.role}
+                </div>
+              </div>
+
+              <div className="lg:col-span-7 lg:pl-6 space-y-6">
+                <p className="label-tag text-jaune">
+                  T&eacute;moignage &middot; {story.role}
+                </p>
+                <blockquote className="font-display text-2xl sm:text-3xl lg:text-4xl text-gris leading-snug italic font-normal">
+                  &ldquo;{story.quote}&rdquo;
+                </blockquote>
+                <div className="pt-6 border-t border-ligne flex items-center justify-between text-xs font-mono text-grisDoux">
+                  <span className="font-semibold text-gris text-sm">{story.name}</span>
+                  <span>Partenaire FoodBridge</span>
+                </div>
               </div>
             </motion.article>
           </AnimatePresence>
         </div>
-        <div className="mt-8 flex gap-2" role="tablist" aria-label="Choose story">
-          {STORIES.map((x, n) => <button key={x.role} role="tab" aria-selected={n === i} aria-label={x.role} onClick={() => { setDir(n > i ? 1 : -1); setI(n) }} className={`h-1.5 rounded-full transition-all ${n === i ? 'w-10 bg-harvest' : 'w-5 bg-forest/25'}`} />)}
+
+        {/* Slide Indicators */}
+        <div className="mt-12 pt-6 border-t border-ligne flex items-center gap-3">
+          {STORIES.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => {
+                setDir(i > index ? 1 : -1)
+                setIndex(i)
+              }}
+              aria-label={`Story ${i + 1}`}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                i === index ? 'w-10 bg-jaune' : 'w-4 bg-ligne hover:bg-grisDoux'
+              }`}
+            />
+          ))}
         </div>
       </div>
     </section>
