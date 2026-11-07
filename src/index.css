@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --fond: #f1ece1;
+  --fond-2: #e7e1d3;
+  --gris: #1b1b1b;
+  --gris-doux: #5f5d57;
+  --ligne: rgba(27, 27, 27, 0.16);
+  --ligne-dark: rgba(241, 236, 225, 0.16);
+  --jaune: #d99b26;
+  --vert: #235338;
+  --gutter: max(clamp(20px, 4.5vw, 64px), env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
+  --header-h: clamp(58px, 8vw, 84px);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-h);
+  background-color: var(--fond);
+}
+
+body {
+  background-color: var(--fond);
+  color: var(--gris);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Fraunces', Georgia, serif;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Emmaüs editorial typography tokens */
+.display {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(3rem, 1.2rem + 6.8vw, 7.8rem);
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+}
+
+.h2 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(2.2rem, 1.1rem + 3.8vw, 4.8rem);
+  line-height: 0.94;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+.h3 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(1.35rem, 1rem + 1.2vw, 2.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  font-size: clamp(1.1rem, 0.98rem + 0.4vw, 1.38rem);
+  line-height: 1.5;
+  color: var(--gris-doux);
+  max-width: 44ch;
+}
+
+.label-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: clamp(0.72rem, 0.7rem + 0.1vw, 0.8125rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.label-index {
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+  opacity: 0.85;
+}
+
+/* Signature Emmaüs marker highlight */
+.marker {
+  background: linear-gradient(var(--jaune), var(--jaune)) 0 90% / 100% 0.25em no-repeat;
+  display: inline;
+}
+
+.marker-vert {
+  background: linear-gradient(var(--vert), var(--vert)) 0 90% / 100% 0.25em no-repeat;
+  display: inline;
+}
+
+.border-ligne {
+  border-color: var(--ligne);
+}
+
+.border-ligne-dark {
+  border-color: var(--ligne-dark);
+}
+
+/* Circular Seal & Badge Animations */
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 24s linear infinite;
+}
+
+/* Marquee track */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Accessible focus ring in warm amber */
+:focus-visible {
+  outline: 2px solid var(--jaune);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-spin-slow,
+  .marquee-track {
+    animation: none;
+  }
+}
