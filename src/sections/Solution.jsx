@@ -30,26 +30,26 @@ const NODES = [
 
 export default function Solution() {
   return (
-    <section id="approach" className="py-24 md:py-32 bg-fond border-t border-ligne">
+    <section id="approach" className="py-24 md:py-32 bg-[#123B2A] text-[#F5F2E9] border-t border-[#365B46]">
       <div className="wrap">
         {/* Section Header */}
-        <div className="flex items-center justify-between border-b border-ligne pb-4 mb-12">
-          <p className="label-tag text-grisDoux">
-            <span className="label-index font-mono text-jaune">03</span>
+        <div className="flex items-center justify-between border-b border-[#365B46] pb-4 mb-12">
+          <p className="label-tag text-[#C5D2C7]">
+            <span className="label-index font-mono text-[#B7D66B]">03</span>
             <span>The Logistics of Dignity &middot; Cooperative Model</span>
           </p>
-          <span className="text-xs font-mono text-grisDoux uppercase tracking-wider">
+          <span className="text-xs font-mono text-[#C5D2C7] uppercase tracking-wider">
             Operational Blueprint
           </span>
         </div>
 
         <Reveal>
           <div className="max-w-3xl">
-            <h2 className="h2 text-gris tracking-tight">
+            <h2 className="h2 text-[#F5F2E9] tracking-tight">
               From surplus kitchens{' '}
-              <span className="marker">to shared tables.</span>
+              <span className="marker text-[#B7D66B]">to shared tables.</span>
             </h2>
-            <p className="lead mt-6 text-grisDoux">
+            <p className="lead mt-6 text-[#C5D2C7]">
               We do not treat food rescue as a waste disposal stream. It is an act of civic hospitality.
               By establishing transparent safety standards between kitchens and shelters, every meal
               preserves its integrity and human respect.
@@ -61,28 +61,28 @@ export default function Solution() {
         <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {NODES.map(({ step, icon: Icon, title, desc }, i) => (
             <Reveal key={step} delay={i * 0.1}>
-              <div className="h-full flex flex-col justify-between p-7 rounded-2xl border border-ligne bg-fond2 hover:border-gris transition-colors group">
+              <div className="h-full flex flex-col justify-between p-7 rounded-2xl border border-[#365B46] bg-[#194B35] hover:border-[#B7D66B] transition-colors group">
                 <div>
-                  <div className="flex items-center justify-between pb-6 border-b border-ligne">
-                    <span className="font-mono text-xs font-bold text-jaune uppercase tracking-widest">
+                  <div className="flex items-center justify-between pb-6 border-b border-[#365B46]">
+                    <span className="font-mono text-xs font-bold text-[#B7D66B] uppercase tracking-widest">
                       {step} / Step
                     </span>
-                    <div className="grid h-10 w-10 place-items-center rounded-full bg-fond border border-ligne text-vert group-hover:bg-vert group-hover:text-fond transition-colors">
+                    <div className="grid h-10 w-10 place-items-center rounded-full bg-[#123B2A] border border-[#365B46] text-[#B7D66B] group-hover:bg-[#B7D66B] group-hover:text-[#111411] transition-colors">
                       <Icon size={18} strokeWidth={1.8} />
                     </div>
                   </div>
 
-                  <h3 className="h3 mt-6 text-gris">
+                  <h3 className="h3 mt-6 text-[#F5F2E9]">
                     {title}
                   </h3>
-                  <p className="mt-3 text-sm text-grisDoux leading-relaxed">
+                  <p className="mt-3 text-sm text-[#C5D2C7] leading-relaxed">
                     {desc}
                   </p>
                 </div>
 
-                <div className="mt-8 pt-4 border-t border-ligne/60 flex items-center justify-between text-xs font-mono text-grisDoux">
+                <div className="mt-8 pt-4 border-t border-[#365B46]/60 flex items-center justify-between text-xs font-mono text-[#C5D2C7]">
                   <span>Protocol Step {step}</span>
-                  <span className="text-vert font-semibold">Verified &check;</span>
+                  <span className="text-[#B7D66B] font-semibold">Verified &check;</span>
                 </div>
               </div>
             </Reveal>

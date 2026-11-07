@@ -5,10 +5,10 @@ import Button from '../components/Button.jsx'
 import { saveEntry } from '../hooks/useStorage.js'
 
 const cls = (hasErr) =>
-  `mt-1.5 w-full rounded-lg border bg-fond2 px-3.5 py-2.5 text-sm text-gris transition-colors focus:outline-none ${
+  `mt-1.5 w-full rounded-lg border bg-[#FAF8F3] px-3.5 py-2.5 text-sm text-[#111411] transition-colors focus:outline-none ${
     hasErr
       ? 'border-red-600 focus:border-red-600'
-      : 'border-ligne focus:border-jaune'
+      : 'border-[#D8D2C2] focus:border-[#123B2A]'
   }`
 
 export default function FormModal({ cfg, initial = {}, onClose }) {
@@ -71,9 +71,9 @@ export default function FormModal({ cfg, initial = {}, onClose }) {
   if (status === 'success') {
     return (
       <Modal title={cfg.successTitle} onClose={onClose}>
-        <div className="mt-6 flex items-start gap-3.5 rounded-xl border border-vert/30 bg-vert/10 p-5 text-vert">
-          <CheckCircle2 className="shrink-0 mt-0.5" size={20} />
-          <p className="text-sm leading-relaxed text-gris font-medium font-body">
+        <div className="mt-6 flex items-start gap-3.5 rounded-xl border border-[#123B2A]/30 bg-[#123B2A]/10 p-5 text-[#123B2A]">
+          <CheckCircle2 className="shrink-0 mt-0.5 text-[#123B2A]" size={20} />
+          <p className="text-sm leading-relaxed text-[#111411] font-medium font-body">
             {cfg.successText}
           </p>
         </div>
@@ -88,13 +88,13 @@ export default function FormModal({ cfg, initial = {}, onClose }) {
 
   return (
     <Modal title={cfg.title} onClose={onClose} closeDisabled={status === 'loading'}>
-      <p className="mt-2 text-sm text-grisDoux leading-relaxed font-body">
+      <p className="mt-2 text-sm text-[#4A534B] leading-relaxed font-body">
         {cfg.intro}
       </p>
 
       {cfg.safety && (
-        <div className="mt-5 flex items-start gap-3 rounded-xl border border-jaune/40 bg-fond2 p-4 text-xs text-gris">
-          <ShieldCheck className="shrink-0 text-vert mt-0.5" size={18} />
+        <div className="mt-5 flex items-start gap-3 rounded-xl border border-[#B7D66B]/50 bg-[#E9E4D6] p-4 text-xs text-[#111411]">
+          <ShieldCheck className="shrink-0 text-[#123B2A] mt-0.5" size={18} />
           <ul className="list-disc space-y-1 pl-4 leading-relaxed font-mono">
             {cfg.safety.map((s) => (
               <li key={s}>{s}</li>
@@ -109,7 +109,7 @@ export default function FormModal({ cfg, initial = {}, onClose }) {
             {f.type !== 'checkbox' && (
               <label
                 htmlFor={`f-${f.name}`}
-                className="text-xs font-mono uppercase tracking-wider text-grisDoux"
+                className="text-xs font-mono uppercase tracking-wider text-[#4A534B]"
               >
                 {f.label}
               </label>
@@ -142,13 +142,13 @@ export default function FormModal({ cfg, initial = {}, onClose }) {
                 aria-describedby={err[f.name] ? `e-${f.name}` : undefined}
               />
             ) : f.type === 'checkbox' ? (
-              <label className="mt-3 flex items-start gap-3 text-xs text-gris cursor-pointer">
+              <label className="mt-3 flex items-start gap-3 text-xs text-[#111411] cursor-pointer">
                 <input
                   id={`f-${f.name}`}
                   type="checkbox"
                   checked={!!v[f.name]}
                   onChange={(e) => set(f.name, e.target.checked)}
-                  className="mt-0.5 h-4 w-4 rounded border-ligne text-vert focus:ring-jaune"
+                  className="mt-0.5 h-4 w-4 rounded border-[#D8D2C2] text-[#123B2A] focus:ring-[#B7D66B]"
                   aria-invalid={!!err[f.name]}
                   aria-describedby={err[f.name] ? `e-${f.name}` : undefined}
                 />
@@ -188,12 +188,12 @@ export default function FormModal({ cfg, initial = {}, onClose }) {
           </p>
         )}
 
-        <div className="mt-6 flex flex-col-reverse gap-3 sm:col-span-2 sm:flex-row sm:justify-end pt-4 border-t border-ligne">
+        <div className="mt-6 flex flex-col-reverse gap-3 sm:col-span-2 sm:flex-row sm:justify-end pt-4 border-t border-[#D8D2C2]">
           <button
             type="button"
             onClick={onClose}
             disabled={status === 'loading'}
-            className="rounded-lg px-4 py-2.5 text-xs font-semibold text-grisDoux hover:text-gris hover:bg-fond2 disabled:opacity-40 transition-colors"
+            className="rounded-lg px-4 py-2.5 text-xs font-semibold text-[#4A534B] hover:text-[#111411] hover:bg-[#E9E4D6] disabled:opacity-40 transition-colors"
           >
             Cancel
           </button>
@@ -213,7 +213,7 @@ export default function FormModal({ cfg, initial = {}, onClose }) {
           </Button>
         </div>
 
-        <p className="text-[11px] font-mono text-grisDoux sm:col-span-2">
+        <p className="text-[11px] font-mono text-[#4A534B] sm:col-span-2">
           * Prototype: details are stored exclusively in this browser&apos;s LocalStorage. Nothing is transmitted to external servers.
         </p>
       </form>

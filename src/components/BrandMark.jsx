@@ -12,18 +12,18 @@ export default function BrandMark({ className = 'h-8 w-8', title = 'FoodBridge' 
       {/* Precision Arch Bridge Arc */}
       <path
         d="M13 44 C23 23, 41 23, 51 44"
-        stroke="#FAF8F5"
+        stroke="#F5F2E9"
         strokeWidth="4"
         strokeLinecap="round"
       />
-      {/* Botanical Seed Sprout */}
+      {/* Botanical Seed Sprout in Natural Lime */}
       <path
         d="M32 30 C32 17, 44 15, 44 24 C44 31, 35 32, 32 30 Z"
-        fill="#C4823F"
+        fill="#B7D66B"
       />
-      {/* Anchor Coordinates */}
-      <circle cx="21" cy="44" r="2.8" fill="#C4823F" />
-      <circle cx="43" cy="44" r="2.8" fill="#C4823F" />
+      {/* Anchor Coordinates in Natural Lime */}
+      <circle cx="21" cy="44" r="2.8" fill="#B7D66B" />
+      <circle cx="43" cy="44" r="2.8" fill="#B7D66B" />
     </svg>
   )
 }

@@ -3,40 +3,62 @@
 @tailwind utilities;
 
 :root {
-  --fond: #FAF8F5;
-  --fond-2: #F1EDE6;
-  --fond-3: #E7E1D8;
-  --gris: #141715;
-  --gris-doux: #555B56;
-  --ligne: rgba(20, 23, 21, 0.12);
-  --ligne-dark: rgba(250, 248, 245, 0.12);
-  --jaune: #C4823F;
-  --vert: #1B3F2F;
+  --forest: #123B2A;
+  --forest-dark: #0D2B1E;
+  --dark-green: #194B35;
+  --border-green: #365B46;
+  --ivory: #F5F2E9;
+  --ivory-dark: #E9E4D6;
+  --border-ivory: #D8D2C2;
+  --near-black: #111411;
+  --muted-sage: #C5D2C7;
+  --natural-lime: #B7D66B;
+
+  --fond: #F5F2E9;
+  --fond-2: #E9E4D6;
+  --gris: #111411;
+  --gris-doux: #4A534B;
+  --ligne: #D8D2C2;
+  --ligne-dark: #365B46;
+  --jaune: #B7D66B;
+  --vert: #123B2A;
   --gutter: max(clamp(20px, 4.5vw, 64px), env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
   --header-h: clamp(60px, 8vw, 86px);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+::selection {
+  background-color: #B7D66B;
+  color: #111411;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--header-h);
-  background-color: var(--fond);
+  background-color: var(--forest);
 }
 
 body {
-  background-color: var(--fond);
-  color: var(--gris);
+  background-color: var(--forest);
+  color: var(--ivory);
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* Subtle Uncoated Heavy Paper Stock Grain Texture */
-.paper-grain {
-  background-color: var(--fond);
-  background-image: radial-gradient(rgba(20, 23, 21, 0.04) 1px, transparent 0);
+/* Subtle texture on light ivory surfaces */
+.paper-grain-ivory {
+  background-color: #F5F2E9;
+  background-image: radial-gradient(rgba(17, 20, 17, 0.04) 1px, transparent 0);
   background-size: 24px 24px;
+}
+
+/* Subtle tone on deep forest surfaces */
+.forest-canvas {
+  background-color: #123B2A;
+  background-image: radial-gradient(rgba(183, 214, 107, 0.02) 1px, transparent 0);
+  background-size: 28px 28px;
 }
 
 h1, h2, h3, h4 {
@@ -80,7 +102,6 @@ h1, h2, h3, h4 {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: clamp(1.05rem, 0.96rem + 0.35vw, 1.28rem);
   line-height: 1.6;
-  color: var(--gris-doux);
   max-width: 44ch;
 }
 
@@ -102,27 +123,27 @@ h1, h2, h3, h4 {
   opacity: 0.9;
 }
 
-/* Refined Editorial Italic Marker Accent */
+/* Natural Lime Editorial Accent Marker */
 .marker {
   font-style: italic;
-  color: var(--jaune);
+  color: var(--natural-lime);
   position: relative;
   display: inline;
 }
 
-.marker-vert {
+.marker-dark {
   font-style: italic;
-  color: var(--vert);
+  color: var(--near-black);
   position: relative;
   display: inline;
 }
 
 .border-ligne {
-  border-color: var(--ligne);
+  border-color: var(--border-ivory);
 }
 
 .border-ligne-dark {
-  border-color: var(--ligne-dark);
+  border-color: var(--border-green);
 }
 
 /* Circular Seal & Badge Animations */
@@ -151,9 +172,9 @@ h1, h2, h3, h4 {
   animation-play-state: paused;
 }
 
-/* Accessible focus ring in warm copper */
+/* Accessible focus ring in natural lime */
 :focus-visible {
-  outline: 2px solid var(--jaune);
+  outline: 2px solid var(--natural-lime);
   outline-offset: 3px;
   border-radius: 4px;
 }

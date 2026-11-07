@@ -39,7 +39,7 @@ export default function Modal({ title, onClose, children, closeDisabled = false 
 
   return (
     <motion.div
-      className="fixed inset-0 z-[70] flex items-end justify-center bg-gris/75 backdrop-blur-sm sm:items-center p-0 sm:p-6"
+      className="fixed inset-0 z-[70] flex items-end justify-center bg-[#123B2A]/85 backdrop-blur-sm sm:items-center p-0 sm:p-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -50,7 +50,7 @@ export default function Modal({ title, onClose, children, closeDisabled = false 
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"
-        className="relative max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-t-2xl sm:rounded-2xl border border-ligne bg-fond p-6 sm:p-10 shadow-2xl"
+        className="relative max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-t-2xl sm:rounded-2xl border border-[#D8D2C2] bg-[#F5F2E9] text-[#111411] p-6 sm:p-10 shadow-2xl"
         initial={{ y: 40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 30, opacity: 0 }}
@@ -60,11 +60,11 @@ export default function Modal({ title, onClose, children, closeDisabled = false 
           onClick={onClose}
           disabled={closeDisabled}
           aria-label="Close dialog"
-          className="absolute right-5 top-5 grid h-9 w-9 place-items-center rounded-full border border-ligne bg-fond2 text-gris hover:border-gris transition-colors disabled:opacity-40"
+          className="absolute right-5 top-5 grid h-9 w-9 place-items-center rounded-full border border-[#D8D2C2] bg-[#E9E4D6] text-[#111411] hover:border-[#111411] transition-colors disabled:opacity-40"
         >
           <X size={18} />
         </button>
-        <h2 id="modal-title" className="pr-12 font-display text-2xl sm:text-3xl font-normal tracking-tight text-gris leading-snug">
+        <h2 id="modal-title" className="pr-12 font-display text-2xl sm:text-3xl font-normal tracking-tight text-[#111411] leading-snug">
           {title}
         </h2>
         {children}
