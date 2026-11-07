@@ -1,14 +1,59 @@
 const local = (file, alt) => ({ src: `/images/${file}`, alt })
 
 export const IMG = {
-  hero: local('hero-vegetables.jpg', 'Fresh vegetables at a market stall'),
-  heroSmall: local('hero-soup.jpg', 'A bowl of soup ready to serve'),
-  problem: local('meal.jpg', 'A plated meal on a table'),
-  kitchen: local('kitchen.jpg', 'Chefs working in a restaurant kitchen'),
-  connect: local('plated-food.jpg', 'A carefully plated dish'),
-  deliver: local('packing.jpg', 'Food being packed for distribution'),
-  volunteers: local('volunteers.jpg', 'Volunteers sharing food with a community'),
-  cta: local('shared-meal.jpg', 'People sharing a meal around a table')
+  // Hero section
+  hero: local(
+    'hero-surplus-produce.jpg',
+    'Fresh surplus vegetables neatly sorted in wooden crates and biodegradable trays at a Bangalore intake station'
+  ),
+  heroSmall: local(
+    'hero-thermal-handover.jpg',
+    'Stainless steel thermal insulated carriers and tiffin containers prepared with temperature logs in a commercial kitchen'
+  ),
+
+  // Problem section
+  problem: local(
+    'problem-surplus-kitchen.jpg',
+    'Freshly prepared surplus vegetable pulao, dal, and rotis in stainless steel warming pans awaiting evening rescue before closing'
+  ),
+
+  // How It Works chapters (Distinct operational phases)
+  kitchen: local(
+    'how-kitchen-logging.jpg',
+    'Chef in a commercial restaurant kitchen carefully portioning wholesome surplus into clean food-grade delivery containers'
+  ),
+  connect: local(
+    'how-pantry-dispatch.jpg',
+    'Pantry coordinator and volunteer inspecting delivery crates of fresh produce and meal trays at a community food hub'
+  ),
+  deliver: local(
+    'how-shelter-delivery.jpg',
+    'Civic volunteers carefully transferring insulated thermal food containers into a Bangalore community shelter entrance'
+  ),
+
+  // Stories (Unique, dedicated editorial portraits for each contributor)
+  storyMeera: local(
+    'story-meera-chef.jpg',
+    'Meera, café owner, standing in her Bangalore kitchen in an apron beside stainless steel cookware'
+  ),
+  storyArjun: local(
+    'story-arjun-coordinator.jpg',
+    'Arjun, community kitchen coordinator, in a bright Bangalore dining hall with stainless steel tables'
+  ),
+  storyPriya: local(
+    'story-priya-volunteer.jpg',
+    'Priya, volunteer courier, beside her scooter equipped with an unbranded insulated food delivery pack'
+  ),
+
+  // Community solidarity & legacy fallbacks
+  volunteers: local(
+    'story-priya-volunteer.jpg',
+    'Civic volunteer courier ready for evening food rescue distribution in Bengaluru'
+  ),
+  cta: local(
+    'cta-community-solidarity.jpg',
+    'Community members sharing a warm, freshly served meal on traditional stainless steel thali plates'
+  )
 }
 
 export const NGOS = [
@@ -116,20 +161,20 @@ export const STORIES = [
     name: 'Meera, owner of a 40-seat café',
     quote:
       'We always over-prepare on weekends. Before, the extra rice and dal went in the bin at closing. Now I list it by 8 pm and an NGO picks it up while it is still safe. It feels like the kitchen finally closes the loop.',
-    img: 'kitchen'
+    img: 'storyMeera'
   },
   {
     role: 'NGO coordinator',
     name: 'Arjun, kitchen coordinator',
     quote:
       'The difficult part has never been willingness, it is timing. When a donor tells me exactly what is available and until when, I can decide in minutes whether our volunteers can reach it safely.',
-    img: 'connect'
+    img: 'storyArjun'
   },
   {
     role: 'Volunteer',
     name: 'Priya, weekend volunteer',
     quote:
       'I have two free hours on Saturdays and a scooter. Knowing the pickup address, the safe-to-eat deadline and who is waiting at the other end makes those two hours count.',
-    img: 'volunteers'
+    img: 'storyPriya'
   }
 ]
