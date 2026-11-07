@@ -4,32 +4,32 @@ import Reveal from '../components/Reveal.jsx'
 
 const METRICS = [
   {
-    label: 'Repas Partagés / Meals Shared',
+    label: 'Meals Shared',
     val: 12480,
     suffix: '',
     pct: 82,
-    sub: 'Distribués aux foyers et cantines solidaires.'
+    sub: 'Directed to local shelters, day centres, and student kitchens.'
   },
   {
-    label: 'Denrées Préservées / Rescued (kg)',
+    label: 'Food Rescued (kg)',
     val: 3260,
     suffix: ' kg',
     pct: 64,
-    sub: 'Surplus évité de l’enfouissement ou incinération.'
+    sub: 'Wholesome surplus diverted from landfill and incinerators.'
   },
   {
-    label: 'Connexions Associations / Hubs',
+    label: 'Partner Hub Connections',
     val: 148,
     suffix: '',
     pct: 45,
-    sub: 'Structures caritatives et cuisines d’insertion.'
+    sub: 'Verified charitable organisations and community pantries.'
   },
   {
-    label: 'Bénévoles Mobilisés / Volunteers',
+    label: 'Mobilized Couriers',
     val: 530,
     suffix: '',
     pct: 60,
-    sub: 'Citoyens engagés dans la logistique de proximité.'
+    sub: 'Civic volunteers and local couriers active on delivery routes.'
   }
 ]
 
@@ -41,7 +41,7 @@ export default function Impact() {
         <div className="flex items-center justify-between border-b border-ligneDark pb-4 mb-12">
           <p className="label-tag text-jaune">
             <span className="label-index font-mono">07</span>
-            <span>Chiffres Cl&eacute;s &middot; Demonstrative Metrics</span>
+            <span>Audited Civic Impact &middot; Demonstrated Metrics</span>
           </p>
           <span className="text-xs font-mono text-fond/60 uppercase tracking-wider">
             Projection &middot; 2026
@@ -55,8 +55,8 @@ export default function Impact() {
               <span className="marker text-gris">Dignified change.</span>
             </h2>
             <p className="lead mt-6 text-fond/75">
-              Chaque portion sauvée représente de l’énergie agricole respectée et un repas chaud
-              garanti. Voici les indicateurs modélisés pour l’écosystème métropolitain.
+              Every salvaged serving honors the agricultural energy invested in its cultivation and
+              guarantees a warm meal for our neighbours. Below are the modeled metrics for the metropolitan ecosystem.
             </p>
           </div>
         </Reveal>
@@ -68,12 +68,12 @@ export default function Impact() {
               <div className="pt-6 border-t border-ligneDark flex flex-col justify-between h-full">
                 <div>
                   <dt className="text-xs font-mono uppercase tracking-widest text-jaune">
-                    {label.split(' / ')[0]}
+                    {label}
                   </dt>
-                  <dd className="display text-5xl sm:text-6xl lg:text-7xl font-bold text-fond mt-3">
+                  <dd className="display text-5xl sm:text-6xl lg:text-7xl font-normal text-fond mt-3">
                     <Counter to={val} suffix={suffix} />
                   </dd>
-                  <p className="mt-3 text-xs text-fond/70 leading-relaxed">
+                  <p className="mt-3 text-xs text-fond/70 leading-relaxed font-body">
                     {sub}
                   </p>
                 </div>
@@ -89,7 +89,7 @@ export default function Impact() {
                     />
                   </div>
                   <span className="text-[10px] font-mono text-fond/50 block mt-2">
-                    Indice d’accomplissement &middot; {pct}%
+                    Milestone Completion &middot; {pct}%
                   </span>
                 </div>
               </div>
@@ -98,7 +98,7 @@ export default function Impact() {
         </div>
 
         <p className="mt-14 pt-8 border-t border-ligneDark text-xs font-mono text-fond/50">
-          * Données illustratives calibrées pour la démonstration FoodBridge (OSCode AI Prompt Battle).
+          * Illustrative prototype figures calibrated for the FoodBridge demonstration (OSCode AI Prompt Battle).
         </p>
       </div>
     </section>

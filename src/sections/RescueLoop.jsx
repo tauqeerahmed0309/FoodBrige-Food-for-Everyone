@@ -1,13 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
-  ArrowRight,
   Check,
   Clipboard,
   Compass,
   FileText,
   Printer,
-  RotateCcw,
   Sparkles,
   Clock,
   MapPin,
@@ -34,7 +32,7 @@ import {
   validateAllocations
 } from '../features/rescueLoop.js'
 
-const formatDate = (val) => (val ? new Date(val).toLocaleString('en-IN') : 'Non renseigné')
+const formatDate = (val) => (val ? new Date(val).toLocaleString('en-IN') : 'Not recorded')
 
 export default function RescueLoop({ onDonate }) {
   const [donations, setDonations] = useState(() => allDonations())
@@ -81,19 +79,18 @@ export default function RescueLoop({ onDonate }) {
   const clock = donation ? rescueClock(donation) : null
   const visibleNeeds = findNeeds({ category: needFilter })
 
-  // Interactive handler methods preserving full logic
   const handleDemoSeed = () => {
     const d = seedDemo()
     setSelectedId(d.id)
     refresh()
-    setNotice('Scénario de démonstration initialisé. Vous pouvez tester la coordination en direct.')
+    setNotice('Simulated judge scenario loaded. You can test live multi-hub allocation and journey tracking below.')
   }
 
   const handleSelectNgo = (ngo) => {
     try {
       recordInterest(donation, ngo)
       refresh()
-      setNotice(`Intérêt simulé enregistré pour ${ngo.name}. Aucune organisation réelle n’a été contactée.`)
+      setNotice(`Demonstration interest recorded from ${ngo.name}. No real organisation was contacted.`)
     } catch (e) {
       setNotice(e.message)
     }
@@ -103,7 +100,7 @@ export default function RescueLoop({ onDonate }) {
     try {
       progressJourney(donation)
       refresh()
-      setNotice('Statut de démonstration avancé. Ce jalon illustre le protocole de remise.')
+      setNotice('Demonstration journey status advanced. Simulates the verified handover protocol.')
     } catch (e) {
       setNotice(e.message)
     }
@@ -115,7 +112,7 @@ export default function RescueLoop({ onDonate }) {
 
   const handleConfirmAllocation = () => {
     if (!allocationCheck?.valid) {
-      return setNotice(allocationCheck?.error || 'L’allocation requiert une vérification.')
+      return setNotice(allocationCheck?.error || 'Allocation requires review.')
     }
     try {
       updateDonation(donation.id, (d) => ({
@@ -125,9 +122,9 @@ export default function RescueLoop({ onDonate }) {
       }))
       refresh()
       setManual({})
-      setNotice('Proposition d’allocation enregistrée localement dans votre navigateur.')
+      setNotice('Proposed allocation saved locally in your browser storage.')
     } catch {
-      setNotice('Impossible d’enregistrer l’allocation sur cet appareil.')
+      setNotice('Unable to save allocation on this device.')
     }
   }
 
@@ -135,7 +132,7 @@ export default function RescueLoop({ onDonate }) {
 
   const handleCopyReference = () => {
     navigator.clipboard?.writeText(donation.id)
-    setNotice(`Référence ${donation.id} copiée dans le presse-papier.`)
+    setNotice(`Reference ID FB-${donation.id.slice(-8).toUpperCase()} copied to clipboard.`)
   }
 
   return (
@@ -145,14 +142,14 @@ export default function RescueLoop({ onDonate }) {
         <div className="flex items-center justify-between border-b border-ligne pb-4 mb-12">
           <p className="label-tag text-grisDoux">
             <span className="label-index font-mono text-jaune">05</span>
-            <span>Studio de Sauvetage · Rescue Studio & Engine</span>
+            <span>Rescue Studio &middot; Interactive Allocation Engine</span>
           </p>
           <span className="text-xs font-mono text-grisDoux uppercase tracking-wider">
-            Prototype Interactif &middot; Local
+            Browser-Local Prototype
           </span>
         </div>
 
-        {/* Section Title & Demo Trigger */}
+        {/* Title & Actions */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14">
           <div className="max-w-3xl">
             <h2 className="h2 text-gris tracking-tight">
@@ -178,7 +175,7 @@ export default function RescueLoop({ onDonate }) {
           </div>
         </div>
 
-        {/* Status Notice Toast */}
+        {/* Toast Notice */}
         <AnimatePresence>
           {notice && (
             <motion.div
@@ -189,7 +186,7 @@ export default function RescueLoop({ onDonate }) {
               role="status"
             >
               <div className="flex items-center gap-3">
-                <span className="grid h-6 w-6 place-items-center rounded-full bg-jaune text-gris text-xs font-bold">
+                <span className="grid h-6 w-6 place-items-center rounded-full bg-jaune text-gris text-xs font-mono font-bold">
                   i
                 </span>
                 <span>{notice}</span>
@@ -204,12 +201,12 @@ export default function RescueLoop({ onDonate }) {
           )}
         </AnimatePresence>
 
-        {/* Part A: Community Need Radar (Boutique-style Needs List) */}
+        {/* Part A: Community Need Radar */}
         <div className="p-8 rounded-2xl border border-ligne bg-fond2 mb-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-ligne">
             <div>
-              <p className="label-tag text-jaune">Community Radar · Sample Data</p>
-              <h3 className="h3 mt-2 text-gris">Needs from local shelters & collectives</h3>
+              <p className="label-tag text-jaune">Community Radar &middot; Sample Data</p>
+              <h3 className="h3 mt-2 text-gris">Needs from local shelters &amp; collectives</h3>
             </div>
             <div className="flex items-center gap-3">
               <label htmlFor="need-filter" className="text-xs font-mono uppercase tracking-wider text-grisDoux">
@@ -241,7 +238,7 @@ export default function RescueLoop({ onDonate }) {
                     </span>
                     <span className="font-mono text-xs text-grisDoux">{need.window}</span>
                   </div>
-                  <h4 className="font-display text-xl font-semibold text-gris mt-4">
+                  <h4 className="font-display text-2xl font-normal text-gris mt-4">
                     {need.category} &middot; {need.required} Servings
                   </h4>
                   <p className="text-xs text-vert font-medium mt-1 flex items-center gap-1">
@@ -252,7 +249,7 @@ export default function RescueLoop({ onDonate }) {
                   </p>
                 </div>
                 <div className="mt-5 pt-3 border-t border-ligne/60 flex items-center justify-between">
-                  <span className="font-mono text-[11px] text-grisDoux">Capacité: {need.capacity} max</span>
+                  <span className="font-mono text-[11px] text-grisDoux">Capacity: {need.capacity} max</span>
                   <button
                     onClick={() => {
                       setNeedFilter(need.category)
@@ -268,14 +265,14 @@ export default function RescueLoop({ onDonate }) {
           </div>
         </div>
 
-        {/* Part B: Rescue Studio Grid (Inspection + Journey) */}
+        {/* Part B: Rescue Studio Grid */}
         <div className="grid gap-8 lg:grid-cols-12 items-start">
-          {/* Left Column: Local Listing Inspector & Split Studio */}
+          {/* Left Column: Listing Inspector & Smart Split */}
           <div className="lg:col-span-7 space-y-8">
             <div className="p-8 rounded-2xl border border-ligne bg-fond2">
               <div className="flex items-center justify-between pb-6 border-b border-ligne">
                 <div>
-                  <p className="label-tag text-jaune">Rescue Studio &middot; Matching</p>
+                  <p className="label-tag text-jaune">Rescue Studio &middot; Matching Console</p>
                   <h3 className="h3 mt-2 text-gris">Compatible local partners</h3>
                 </div>
                 <div className="grid h-12 w-12 place-items-center rounded-full border border-ligne bg-fond text-vert">
@@ -286,10 +283,11 @@ export default function RescueLoop({ onDonate }) {
               {donations.length ? (
                 <>
                   <div className="mt-6">
-                    <label className="block text-xs font-mono uppercase tracking-wider text-grisDoux mb-2">
+                    <label htmlFor="listing-select" className="block text-xs font-mono uppercase tracking-wider text-grisDoux mb-2">
                       Select Listing to Inspect:
                     </label>
                     <select
+                      id="listing-select"
                       value={donation?.id || ''}
                       onChange={(e) => {
                         setSelectedId(e.target.value)
@@ -311,20 +309,20 @@ export default function RescueLoop({ onDonate }) {
                       <Clock size={14} />
                       <span>
                         Rescue Clock: <strong>{clock.label}</strong>
-                        {clock.ms ? ` · ~${Math.ceil(clock.ms / 3600000)}h remaining for handover` : ''}
+                        {clock.ms ? ` · ~${Math.ceil(clock.ms / 3600000)}h remaining for collection` : ''}
                       </span>
                     </div>
                   )}
 
-                  {/* Node Route Representation */}
+                  {/* Route Card */}
                   <div className="mt-6 p-6 rounded-xl border border-ligne bg-fond">
                     <div className="flex items-start justify-between pb-4 border-b border-ligne">
                       <div>
                         <p className="label-tag text-grisDoux">Donation Node</p>
-                        <h4 className="font-display text-xl font-bold text-gris mt-1">
+                        <h4 className="font-display text-2xl font-normal text-gris mt-1">
                           {donation.category}
                         </h4>
-                        <p className="text-xs text-grisDoux mt-1">
+                        <p className="text-xs text-grisDoux mt-1 font-mono">
                           {donation.quantity} &middot; {donation.servings || '—'} estimated servings
                         </p>
                       </div>
@@ -334,18 +332,18 @@ export default function RescueLoop({ onDonate }) {
                     </div>
 
                     <div className="mt-4 text-xs font-mono text-grisDoux space-y-1">
-                      <p>Lieu: {donation.location}</p>
-                      <p>Date limite: {formatDate(donation.deadline)}</p>
-                      <p>Stockage: {donation.storageCondition || 'Non spécifié'}</p>
+                      <p>Location: {donation.location}</p>
+                      <p>Safe Deadline: {formatDate(donation.deadline)}</p>
+                      <p>Storage Condition: {donation.storageCondition || 'Not recorded'}</p>
                     </div>
 
-                    {/* Matched NGO recommendations */}
+                    {/* Recommendations */}
                     <div className="mt-6 pt-5 border-t border-ligne">
-                      <p className="label-tag text-jaune mb-3">Recommandations Déterministes</p>
-                      {matches?.review ? (
+                      <p className="label-tag text-jaune mb-3">Deterministic Partner Recommendations</p>
+                      {matches?.review || !matches?.results?.length ? (
                         <div className="p-4 rounded-lg bg-fond2 border border-ligne text-xs text-grisDoux flex items-center gap-2">
                           <AlertCircle size={16} className="text-jaune shrink-0" />
-                          <span>{matches.message}</span>
+                          <span>{matches?.message || 'No single NGO match meets full capacity. Review Smart Split below to allocate across local community needs.'}</span>
                         </div>
                       ) : (
                         <div className="space-y-3">
@@ -356,7 +354,7 @@ export default function RescueLoop({ onDonate }) {
                             >
                               <div>
                                 <div className="flex items-center gap-2">
-                                  <h5 className="font-display font-semibold text-gris text-base">
+                                  <h5 className="font-display font-normal text-gris text-lg">
                                     {ngo.name}
                                   </h5>
                                   <span className="text-xs font-mono text-vert font-bold">
@@ -378,7 +376,7 @@ export default function RescueLoop({ onDonate }) {
                     </div>
                   </div>
 
-                  {/* Smart Split Rescue Controls */}
+                  {/* Smart Split Rescue */}
                   <div className="mt-8 pt-6 border-t border-ligne">
                     <div className="flex items-center justify-between mb-4">
                       <p className="label-tag text-jaune">Smart Split &middot; Multi-Hub Allocation</p>
@@ -429,9 +427,9 @@ export default function RescueLoop({ onDonate }) {
 
                     <div className="mt-4 flex items-center justify-between text-xs font-mono pt-3 border-t border-ligne">
                       <span className="text-grisDoux">
-                        Non alloué:{' '}
+                        Unallocated:{' '}
                         <strong>
-                          {allocationCheck?.valid ? allocationCheck.unallocated : '—'} portions
+                          {allocationCheck?.valid ? allocationCheck.unallocated : '—'} servings
                         </strong>
                       </span>
                       <Button
@@ -452,7 +450,7 @@ export default function RescueLoop({ onDonate }) {
                 </>
               ) : (
                 <div className="py-12 text-center">
-                  <p className="text-grisDoux text-sm">
+                  <p className="text-grisDoux text-sm font-mono">
                     No active listings recorded in this browser.
                   </p>
                   <Button onClick={handleDemoSeed} className="mt-4">
@@ -463,13 +461,13 @@ export default function RescueLoop({ onDonate }) {
             </div>
           </div>
 
-          {/* Right Column: Rescue Journey Tracking */}
+          {/* Right Column: Rescue Journey */}
           <div className="lg:col-span-5 space-y-8">
             <div className="p-8 rounded-2xl border border-ligne bg-fond2">
               <div className="flex items-center justify-between pb-6 border-b border-ligne">
                 <div>
                   <p className="label-tag text-jaune">Rescue Journey</p>
-                  <h3 className="h3 mt-2 text-gris">Protocole de Suivi</h3>
+                  <h3 className="h3 mt-2 text-gris">Chain of Custody Protocol</h3>
                 </div>
                 <ShieldCheck size={24} className="text-vert" />
               </div>
@@ -479,7 +477,6 @@ export default function RescueLoop({ onDonate }) {
                   <ol className="mt-8 space-y-6">
                     {JOURNEY.map((step, index) => {
                       const isCompleted = JOURNEY.indexOf(statusFor(donation)) >= index
-                      const isCurrent = statusFor(donation) === step
                       const event = donation.journeyEvents?.find((e) => e.status === step)
 
                       return (
@@ -503,11 +500,11 @@ export default function RescueLoop({ onDonate }) {
                             </p>
                             {event ? (
                               <p className="text-[11px] font-mono text-vert mt-1">
-                                Horodatage simulé &middot; {formatDate(event.at)}
+                                Simulated timestamp &middot; {formatDate(event.at)}
                               </p>
                             ) : (
                               <p className="text-[11px] font-mono text-grisDoux mt-1">
-                                En attente de coordination
+                                Pending dispatch coordination
                               </p>
                             )}
                           </div>
@@ -534,7 +531,7 @@ export default function RescueLoop({ onDonate }) {
               )}
             </div>
 
-            {/* Impact Story Generator Preview */}
+            {/* Impact Story Generator */}
             {donation && (
               <div className="p-8 rounded-2xl border border-ligne bg-fond2">
                 <div className="flex items-center justify-between pb-4 border-b border-ligne">
@@ -542,7 +539,7 @@ export default function RescueLoop({ onDonate }) {
                   <FileText size={20} className="text-grisDoux" />
                 </div>
                 <p className="text-xs text-grisDoux mt-3 leading-relaxed">
-                  Generate an honest, transparent summary of this prototype plan suitable for print or records.
+                  Generate an honest, transparent summary of this prototype plan suitable for print or distribution records.
                 </p>
 
                 <div className="mt-5 flex gap-3">
@@ -550,18 +547,18 @@ export default function RescueLoop({ onDonate }) {
                     onClick={() => setStoryOpen(!storyOpen)}
                     className="text-xs font-semibold px-4 py-2.5 rounded-lg border border-ligne bg-fond hover:border-gris transition-colors text-gris"
                   >
-                    {storyOpen ? 'Masquer le récit' : 'Aperçu du récit'}
+                    {storyOpen ? 'Hide story preview' : 'Preview impact story'}
                   </button>
                   <button
                     onClick={() => {
                       navigator.clipboard?.writeText(
                         impactStory(donation, allocationCheck?.allocations || [])
                       )
-                      setNotice('Récit d’impact copié dans le presse-papier.')
+                      setNotice('Impact story copied to clipboard.')
                     }}
-                    className="text-xs font-semibold px-4 py-2.5 rounded-lg bg-jaune text-gris hover:bg-[#e4a733] transition-colors"
+                    className="text-xs font-semibold px-4 py-2.5 rounded-lg bg-jaune text-gris hover:bg-[#b57534] transition-colors"
                   >
-                    Copier le texte
+                    Copy summary
                   </button>
                 </div>
 
@@ -575,17 +572,17 @@ export default function RescueLoop({ onDonate }) {
           </div>
         </div>
 
-        {/* Part C: Rescue Passport (Certificate / Receipt) */}
+        {/* Part C: Rescue Passport */}
         {donation && (
           <div className="mt-14 p-8 sm:p-10 rounded-2xl border border-ligne bg-fond2">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-6 border-b border-ligne">
               <div>
-                <p className="label-tag text-jaune">Rescue Passport &middot; Bordereau</p>
+                <p className="label-tag text-jaune">Rescue Passport &middot; Handover Receipt</p>
                 <h3 className="h3 mt-1 text-gris">
                   FB-{donation.id.slice(-8).toUpperCase()}
                 </h3>
                 <p className="text-xs text-grisDoux mt-1 font-mono">
-                  Prototype proof of local coordination. Not an official commercial safety certificate.
+                  Prototype proof of local coordination. Not a commercial health certificate.
                 </p>
               </div>
               <div className="flex items-center gap-3">
@@ -608,48 +605,48 @@ export default function RescueLoop({ onDonate }) {
 
             <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-xs">
               <div className="p-4 rounded-xl bg-fond border border-ligne">
-                <span className="text-grisDoux font-mono uppercase tracking-wider block">Denrée</span>
-                <strong className="text-sm font-display text-gris mt-1 block">
+                <span className="text-grisDoux font-mono uppercase tracking-wider block">Food Category</span>
+                <strong className="text-lg font-display text-gris mt-1 block font-normal">
                   {donation.category}
                 </strong>
-                <span className="text-grisDoux mt-1 block">{donation.quantity}</span>
+                <span className="text-grisDoux mt-1 block font-mono">{donation.quantity}</span>
               </div>
               <div className="p-4 rounded-xl bg-fond border border-ligne">
-                <span className="text-grisDoux font-mono uppercase tracking-wider block">Lieu de Collecte</span>
-                <strong className="text-sm font-display text-gris mt-1 block">
+                <span className="text-grisDoux font-mono uppercase tracking-wider block">Collection Area</span>
+                <strong className="text-lg font-display text-gris mt-1 block font-normal">
                   {donation.location}
                 </strong>
-                <span className="text-grisDoux mt-1 block font-mono">Zone Bangalore</span>
+                <span className="text-grisDoux mt-1 block font-mono">Bangalore Urban Grid</span>
               </div>
               <div className="p-4 rounded-xl bg-fond border border-ligne">
-                <span className="text-grisDoux font-mono uppercase tracking-wider block">Conditions Thermiques</span>
-                <strong className="text-sm font-display text-gris mt-1 block">
-                  {donation.storageCondition || 'Non renseigné'}
+                <span className="text-grisDoux font-mono uppercase tracking-wider block">Thermal Storage</span>
+                <strong className="text-lg font-display text-gris mt-1 block font-normal">
+                  {donation.storageCondition || 'Not recorded'}
                 </strong>
                 <span className="text-grisDoux mt-1 block font-mono">
-                  {donation.storageTemperature ? `${donation.storageTemperature}°C` : 'Conforme'}
+                  {donation.storageTemperature ? `${donation.storageTemperature}°C` : 'Compliant'}
                 </span>
               </div>
               <div className="p-4 rounded-xl bg-fond border border-ligne">
-                <span className="text-grisDoux font-mono uppercase tracking-wider block">Statut Actuel</span>
-                <strong className="text-sm font-display text-vert mt-1 block">
+                <span className="text-grisDoux font-mono uppercase tracking-wider block">Journey Status</span>
+                <strong className="text-lg font-display text-vert mt-1 block font-normal">
                   {statusFor(donation)}
                 </strong>
-                <span className="text-grisDoux mt-1 block font-mono">Enregistrement local</span>
+                <span className="text-grisDoux mt-1 block font-mono">Local Registry</span>
               </div>
             </div>
 
-            {/* Impact Canvas Plate Grid */}
+            {/* Impact Canvas */}
             <div className="mt-10 pt-8 border-t border-ligne">
               <div className="flex items-baseline justify-between mb-4">
                 <div>
-                  <p className="label-tag text-jaune">Impact Canvas · Grille de Portions</p>
-                  <h4 className="font-display text-lg font-bold text-gris mt-1">
-                    Visualisation unitaire des repas préservés
+                  <p className="label-tag text-jaune">Impact Canvas &middot; Portion Grid</p>
+                  <h4 className="font-display text-2xl font-normal text-gris mt-1">
+                    Visualisation of every potential serving
                   </h4>
                 </div>
                 <span className="font-mono text-xs text-grisDoux">
-                  {canvasTotal} unités visualisées
+                  {canvasTotal} serving units shown
                 </span>
               </div>
 
@@ -669,7 +666,7 @@ export default function RescueLoop({ onDonate }) {
                   return (
                     <span
                       key={index}
-                      title={group ? `${group.id}: ${group.servings} portions` : 'Non alloué'}
+                      title={group ? `${group.id}: ${group.servings} portions` : 'Unallocated'}
                       className={`h-4 rounded-full border border-ligne transition-all ${
                         group ? colors[colorIndex] : 'bg-fond2 opacity-40'
                       }`}
@@ -681,7 +678,7 @@ export default function RescueLoop({ onDonate }) {
               <div className="mt-4 flex flex-wrap gap-4 text-xs font-mono text-grisDoux">
                 <span className="inline-flex items-center gap-1.5">
                   <span className="h-3 w-3 rounded-full bg-fond2 border border-ligne" />
-                  Non alloué ({allocationCheck?.valid ? allocationCheck.unallocated : 0})
+                  Unallocated ({allocationCheck?.valid ? allocationCheck.unallocated : 0})
                 </span>
                 {canvasGroups.map((g, i) => (
                   <span key={g.id} className="inline-flex items-center gap-1.5">
@@ -698,43 +695,43 @@ export default function RescueLoop({ onDonate }) {
           </div>
         )}
 
-        {/* Part D: Local Prototype Impact Counter Ripple */}
+        {/* Part D: Civic Ripple Metrics */}
         <div className="mt-16 pt-10 border-t border-ligne">
-          <p className="label-tag text-grisDoux mb-6">Impact Cumulé &middot; Registre Local</p>
+          <p className="label-tag text-grisDoux mb-6">Cumulative Civic Ripple &middot; Local Registry</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
             <div className="p-4 rounded-xl border border-ligne bg-fond2">
-              <span className="font-display text-3xl sm:text-4xl font-bold text-gris">
+              <span className="font-display text-4xl sm:text-5xl text-gris font-normal">
                 {metrics.listed}
               </span>
-              <p className="text-xs font-mono text-grisDoux mt-1">Dons Référencés</p>
+              <p className="text-xs font-mono text-grisDoux mt-1">Donations Cataloged</p>
             </div>
             <div className="p-4 rounded-xl border border-ligne bg-fond2">
-              <span className="font-display text-3xl sm:text-4xl font-bold text-vert">
+              <span className="font-display text-4xl sm:text-5xl text-vert font-normal">
                 {metrics.servings}
               </span>
-              <p className="text-xs font-mono text-grisDoux mt-1">Portions Estimées</p>
+              <p className="text-xs font-mono text-grisDoux mt-1">Estimated Servings</p>
             </div>
             <div className="p-4 rounded-xl border border-ligne bg-fond2">
-              <span className="font-display text-3xl sm:text-4xl font-bold text-jaune">
+              <span className="font-display text-4xl sm:text-5xl text-jaune font-normal">
                 {metrics.available}
               </span>
-              <p className="text-xs font-mono text-grisDoux mt-1">Disponibles</p>
+              <p className="text-xs font-mono text-grisDoux mt-1">Currently Available</p>
             </div>
             <div className="p-4 rounded-xl border border-ligne bg-fond2">
-              <span className="font-display text-3xl sm:text-4xl font-bold text-gris">
+              <span className="font-display text-4xl sm:text-5xl text-gris font-normal">
                 {metrics.interests}
               </span>
-              <p className="text-xs font-mono text-grisDoux mt-1">Intérêts ONG</p>
+              <p className="text-xs font-mono text-grisDoux mt-1">NGO Interests</p>
             </div>
             <div className="p-4 rounded-xl border border-ligne bg-fond2 col-span-2 sm:col-span-1">
-              <span className="font-display text-3xl sm:text-4xl font-bold text-vert">
+              <span className="font-display text-4xl sm:text-5xl text-vert font-normal">
                 {metrics.completed}
               </span>
-              <p className="text-xs font-mono text-grisDoux mt-1">Parcours Terminés</p>
+              <p className="text-xs font-mono text-grisDoux mt-1">Journeys Completed</p>
             </div>
           </div>
           <p className="mt-4 text-[11px] font-mono text-grisDoux/80">
-            * Données conservées uniquement dans le stockage local de votre navigateur. Aucune base de données centrale.
+            * Browser-local demonstration records. No central cloud telemetry.
           </p>
         </div>
       </div>

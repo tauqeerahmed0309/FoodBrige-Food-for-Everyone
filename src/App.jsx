@@ -24,12 +24,12 @@ const FORMS = {
 
 const LEGAL = {
   'legal-privacy': [
-    'Politique de Confidentialité / Privacy Policy',
-    'FoodBridge est un prototype de recherche et démonstration citoyenne. Les informations que vous saisissez (dons, coordonnées de contact, réservations) sont enregistrées exclusivement au sein du stockage local (LocalStorage) de votre propre navigateur internet. Aucune donnée n’est transmise vers un serveur externe, ni commercialisée. Vous pouvez réinitialiser l’ensemble des données à tout moment via le pied de page ou les paramètres de votre navigateur.'
+    'Privacy Policy',
+    'FoodBridge is a demonstration prototype. All details you submit (food donations, volunteer registrations, and partnership inquiries) are stored exclusively in your own browser’s local storage (LocalStorage). No data is transmitted to any external server or third party. You can clear your records at any time via the footer link or by clearing site data in your browser settings.'
   ],
   'legal-terms': [
-    'Conditions Générales d’Utilisation / Terms of Service',
-    'FoodBridge constitue un modèle fonctionnel et démonstratif. Les annonces et coordonnées d’associations présentées sont fournies à titre indicatif et scénarisé. Les donateurs professionnels et particuliers conservent l’entière responsabilité de la fraîcheur, de la traçabilité et de l’hygiène alimentaire des denrées déclarées.'
+    'Terms of Service',
+    'FoodBridge is a demonstration framework. Listings and organisation profiles shown are simulated for this civic prototype. Food donors remain fully responsible for the freshness, handling safety, and thermal storage integrity of all donated food batches before pickup.'
   ]
 }
 
@@ -42,9 +42,9 @@ export default function App() {
     <MotionConfig reducedMotion="user">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:bg-jaune focus:text-gris focus:font-semibold focus:px-4 focus:py-2 focus:rounded-md focus:shadow-lg"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:bg-jaune focus:text-gris focus:font-semibold focus:px-4 focus:py-2 focus:rounded-md focus:shadow-lg font-mono text-xs"
       >
-        Aller au contenu principal
+        Skip to main content
       </a>
 
       <Nav onDonate={() => open('donate')} />
@@ -74,12 +74,12 @@ export default function App() {
         )}
         {modal && LEGAL[modal.kind] && (
           <Modal key={modal.kind} title={LEGAL[modal.kind][0]} onClose={close}>
-            <p className="mt-4 leading-relaxed text-sm text-grisDoux">
+            <p className="mt-4 leading-relaxed text-sm text-grisDoux font-body">
               {LEGAL[modal.kind][1]}
             </p>
             <div className="mt-8 flex justify-end">
               <Button variant="dark" onClick={close}>
-                Fermer
+                Close
               </Button>
             </div>
           </Modal>

@@ -3,16 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --fond: #f1ece1;
-  --fond-2: #e7e1d3;
-  --gris: #1b1b1b;
-  --gris-doux: #5f5d57;
-  --ligne: rgba(27, 27, 27, 0.16);
-  --ligne-dark: rgba(241, 236, 225, 0.16);
-  --jaune: #d99b26;
-  --vert: #235338;
+  --fond: #FAF8F5;
+  --fond-2: #F1EDE6;
+  --fond-3: #E7E1D8;
+  --gris: #141715;
+  --gris-doux: #555B56;
+  --ligne: rgba(20, 23, 21, 0.12);
+  --ligne-dark: rgba(250, 248, 245, 0.12);
+  --jaune: #C4823F;
+  --vert: #1B3F2F;
   --gutter: max(clamp(20px, 4.5vw, 64px), env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
-  --header-h: clamp(58px, 8vw, 84px);
+  --header-h: clamp(60px, 8vw, 86px);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -25,14 +26,22 @@ html {
 body {
   background-color: var(--fond);
   color: var(--gris);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
+/* Subtle Uncoated Heavy Paper Stock Grain Texture */
+.paper-grain {
+  background-color: var(--fond);
+  background-image: radial-gradient(rgba(20, 23, 21, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
 h1, h2, h3, h4 {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
 }
 
 .wrap {
@@ -42,62 +51,69 @@ h1, h2, h3, h4 {
   padding-inline: var(--gutter);
 }
 
-/* Emmaüs editorial typography tokens */
+/* Bespoke Editorial Typography */
 .display {
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: clamp(3rem, 1.2rem + 6.8vw, 7.8rem);
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(3.4rem, 1.4rem + 7.4vw, 8.8rem);
   line-height: 0.88;
-  letter-spacing: -0.035em;
-  font-weight: 600;
+  letter-spacing: -0.04em;
+  font-weight: 400;
 }
 
 .h2 {
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: clamp(2.2rem, 1.1rem + 3.8vw, 4.8rem);
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(2.4rem, 1.2rem + 4.2vw, 5.4rem);
   line-height: 0.94;
-  letter-spacing: -0.03em;
-  font-weight: 600;
+  letter-spacing: -0.035em;
+  font-weight: 400;
 }
 
 .h3 {
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: clamp(1.35rem, 1rem + 1.2vw, 2.2rem);
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2.5rem);
   line-height: 1.05;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
+  font-weight: 400;
 }
 
 .lead {
-  font-size: clamp(1.1rem, 0.98rem + 0.4vw, 1.38rem);
-  line-height: 1.5;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.05rem, 0.96rem + 0.35vw, 1.28rem);
+  line-height: 1.6;
   color: var(--gris-doux);
   max-width: 44ch;
 }
 
 .label-tag {
+  font-family: 'Space Mono', monospace;
   display: inline-flex;
   align-items: center;
-  gap: 0.6em;
-  font-size: clamp(0.72rem, 0.7rem + 0.1vw, 0.8125rem);
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  gap: 0.65em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   line-height: 1;
 }
 
 .label-index {
-  font-feature-settings: "tnum";
+  font-family: 'Space Mono', monospace;
   font-variant-numeric: tabular-nums;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
-/* Signature Emmaüs marker highlight */
+/* Refined Editorial Italic Marker Accent */
 .marker {
-  background: linear-gradient(var(--jaune), var(--jaune)) 0 90% / 100% 0.25em no-repeat;
+  font-style: italic;
+  color: var(--jaune);
+  position: relative;
   display: inline;
 }
 
 .marker-vert {
-  background: linear-gradient(var(--vert), var(--vert)) 0 90% / 100% 0.25em no-repeat;
+  font-style: italic;
+  color: var(--vert);
+  position: relative;
   display: inline;
 }
 
@@ -116,7 +132,7 @@ h1, h2, h3, h4 {
 }
 
 .animate-spin-slow {
-  animation: spinSlow 24s linear infinite;
+  animation: spinSlow 28s linear infinite;
 }
 
 /* Marquee track */
@@ -128,14 +144,14 @@ h1, h2, h3, h4 {
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 32s linear infinite;
+  animation: marquee 36s linear infinite;
 }
 
 .marquee-track:hover {
   animation-play-state: paused;
 }
 
-/* Accessible focus ring in warm amber */
+/* Accessible focus ring in warm copper */
 :focus-visible {
   outline: 2px solid var(--jaune);
   outline-offset: 3px;

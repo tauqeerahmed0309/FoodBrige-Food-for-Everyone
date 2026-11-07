@@ -17,7 +17,7 @@ export default function Stories() {
 
   return (
     <section
-      id="temoignages"
+      id="stories"
       aria-label="Community stories"
       className="py-24 md:py-32 bg-fond border-t border-ligne"
     >
@@ -26,10 +26,10 @@ export default function Stories() {
         <div className="flex items-center justify-between border-b border-ligne pb-4 mb-12">
           <p className="label-tag text-grisDoux">
             <span className="label-index font-mono text-jaune">08</span>
-            <span>T&eacute;moignages &middot; Voices of Solidarity</span>
+            <span>Kitchen Testimonials &middot; Voices of Solidarity</span>
           </p>
           <span className="text-xs font-mono text-grisDoux uppercase tracking-wider">
-            R&eacute;cits Locaux
+            Local Narratives
           </span>
         </div>
 
@@ -40,21 +40,21 @@ export default function Stories() {
               Community <span className="marker">stories.</span>
             </h2>
             <p className="lead mt-4 text-grisDoux">
-              Récits authentiques de restaurateurs, coordinateurs associatifs et bénévoles.
+              Authentic perspectives from restaurant chefs, charity kitchen coordinators, and neighbourhood couriers.
             </p>
           </div>
 
           <div className="flex items-center gap-3">
             <button
               onClick={() => go(-1)}
-              aria-label="Précédent"
+              aria-label="Previous story"
               className="grid h-12 w-12 place-items-center rounded-full border border-ligne bg-fond2 text-gris hover:border-gris hover:bg-fond transition-colors focus:outline-none"
             >
               <ChevronLeft size={18} />
             </button>
             <button
               onClick={() => go(1)}
-              aria-label="Suivant"
+              aria-label="Next story"
               className="grid h-12 w-12 place-items-center rounded-full border border-ligne bg-fond2 text-gris hover:border-gris hover:bg-fond transition-colors focus:outline-none"
             >
               <ChevronRight size={18} />
@@ -86,14 +86,14 @@ export default function Stories() {
 
               <div className="lg:col-span-7 lg:pl-6 space-y-6">
                 <p className="label-tag text-jaune">
-                  T&eacute;moignage &middot; {story.role}
+                  Testimonial &middot; {story.role}
                 </p>
                 <blockquote className="font-display text-2xl sm:text-3xl lg:text-4xl text-gris leading-snug italic font-normal">
                   &ldquo;{story.quote}&rdquo;
                 </blockquote>
                 <div className="pt-6 border-t border-ligne flex items-center justify-between text-xs font-mono text-grisDoux">
-                  <span className="font-semibold text-gris text-sm">{story.name}</span>
-                  <span>Partenaire FoodBridge</span>
+                  <span className="font-semibold text-gris text-sm font-body">{story.name}</span>
+                  <span>FoodBridge Verified Contributor</span>
                 </div>
               </div>
             </motion.article>

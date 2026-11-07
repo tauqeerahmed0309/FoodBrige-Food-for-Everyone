@@ -6,19 +6,19 @@ const NODES = [
     step: '01',
     icon: Store,
     title: 'Food Donors',
-    desc: 'Cafés, hotels, banquets and private events catalog their surplus with safe-consumption windows and storage data.'
+    desc: 'Cafés, hotels, banquets, and caterers catalog their surplus with safe-consumption windows and thermal storage data.'
   },
   {
     step: '02',
     icon: Network,
     title: 'FoodBridge Platform',
-    desc: 'Validates safety parameters, performs deterministic capacity matching, and plans proportional multi-NGO splits.'
+    desc: 'Validates safety parameters, performs deterministic capacity matching, and calculates proportional multi-hub splits.'
   },
   {
     step: '03',
     icon: UsersRound,
     title: 'NGOs & Couriers',
-    desc: 'Local verified charity teams accept dispatch assignments and coordinate timely vehicle or scooter pickup.'
+    desc: 'Local verified charity teams accept dispatch assignments and coordinate timely vehicle or scooter collection.'
   },
   {
     step: '04',
@@ -30,16 +30,16 @@ const NODES = [
 
 export default function Solution() {
   return (
-    <section id="mission" className="py-24 md:py-32 bg-fond border-t border-ligne">
+    <section id="approach" className="py-24 md:py-32 bg-fond border-t border-ligne">
       <div className="wrap">
         {/* Section Header */}
         <div className="flex items-center justify-between border-b border-ligne pb-4 mb-12">
           <p className="label-tag text-grisDoux">
             <span className="label-index font-mono text-jaune">03</span>
-            <span>Notre Mission · The Cooperative Model</span>
+            <span>The Logistics of Dignity &middot; Cooperative Model</span>
           </p>
           <span className="text-xs font-mono text-grisDoux uppercase tracking-wider">
-            Architecture Solidaire
+            Operational Blueprint
           </span>
         </div>
 
@@ -50,14 +50,14 @@ export default function Solution() {
               <span className="marker">to shared tables.</span>
             </h2>
             <p className="lead mt-6 text-grisDoux">
-              We do not treat food rescue as a waste dump. It is an act of civic hospitality.
-              By establishing transparent data standards between kitchens and shelters, every meal
+              We do not treat food rescue as a waste disposal stream. It is an act of civic hospitality.
+              By establishing transparent safety standards between kitchens and shelters, every meal
               preserves its integrity and human respect.
             </p>
           </div>
         </Reveal>
 
-        {/* 4-Node Solidarity Pipeline */}
+        {/* 4-Node Pipeline */}
         <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {NODES.map(({ step, icon: Icon, title, desc }, i) => (
             <Reveal key={step} delay={i * 0.1}>
@@ -81,8 +81,8 @@ export default function Solution() {
                 </div>
 
                 <div className="mt-8 pt-4 border-t border-ligne/60 flex items-center justify-between text-xs font-mono text-grisDoux">
-                  <span>Protocole Étape {step}</span>
-                  <span className="text-vert font-semibold">Vérifié ✓</span>
+                  <span>Protocol Step {step}</span>
+                  <span className="text-vert font-semibold">Verified &check;</span>
                 </div>
               </div>
             </Reveal>

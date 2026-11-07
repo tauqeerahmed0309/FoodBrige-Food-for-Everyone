@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import Button from '../components/Button.jsx'
 import SmartImg from '../components/SmartImg.jsx'
 import BrandMark from '../components/BrandMark.jsx'
@@ -6,20 +5,20 @@ import { IMG } from '../data/images.js'
 
 export default function Hero({ onDonate }) {
   return (
-    <section id="accueil" className="relative pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden bg-fond">
+    <section id="overview" className="relative pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden bg-fond">
       <div className="wrap">
-        {/* Top editorial label */}
-        <div className="flex items-center justify-between border-b border-ligne pb-4 mb-8">
+        {/* Top Editorial Label */}
+        <div className="flex items-center justify-between border-b border-ligne pb-4 mb-10">
           <p className="label-tag text-grisDoux">
-            <span className="label-index font-mono text-jaune">01</span>
-            <span>Dispositif Solidaire · Food Rescue Network</span>
+            <span className="label-index text-jaune font-mono">01</span>
+            <span>Civic Food Logistics &middot; Direct Surplus Dispatch</span>
           </p>
-          <span className="hidden sm:inline text-xs text-grisDoux uppercase tracking-widest font-mono">
-            Bangalore &middot; 2026
+          <span className="hidden sm:inline text-xs text-grisDoux font-mono tracking-widest uppercase">
+            Bangalore Metropolitan Area &middot; 2026
           </span>
         </div>
 
-        {/* Hero Title Grid */}
+        {/* Hero Title & Rotating Seal Grid */}
         <div className="grid gap-10 lg:grid-cols-12 items-end">
           <div className="lg:col-span-8">
             <h1 className="display text-gris tracking-tight">
@@ -35,9 +34,9 @@ export default function Hero({ onDonate }) {
             </h1>
 
             <p className="lead mt-8 text-grisDoux">
-              FoodBridge connects edible surplus from restaurants, kitchens and banquets
-              with local shelters and community pantries. We turn avoidable food waste into
-              transparent, dignified nourishment.
+              FoodBridge connects edible surplus from Bangalore&apos;s commercial kitchens, banquets,
+              and food businesses with verified neighbourhood shelters. Turning food rescue into an
+              open, dignified civic reality.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
@@ -45,21 +44,21 @@ export default function Hero({ onDonate }) {
                 Donate Surplus Food
               </Button>
               <a
-                href="#parcours"
+                href="#how-it-works"
                 className="group inline-flex items-center gap-2 rounded-lg border border-ligne px-5 py-3 text-sm font-semibold text-gris hover:border-gris transition-colors"
               >
                 <span>Discover How It Works</span>
-                <span className="transition-transform group-hover:translate-y-0.5">↓</span>
+                <span className="transition-transform group-hover:translate-y-0.5">&darr;</span>
               </a>
             </div>
           </div>
 
-          {/* Rotating Emmaüs Circular Seal Badge */}
+          {/* Rotating Circular Seal Badge */}
           <div className="lg:col-span-4 flex lg:justify-end items-center">
             <a
-              href="#constat"
+              href="#crisis"
               className="relative inline-grid place-items-center group focus:outline-none"
-              aria-label="Faites défiler pour explorer"
+              aria-label="Scroll down to explore"
             >
               <svg
                 viewBox="0 0 160 160"
@@ -71,9 +70,9 @@ export default function Hero({ onDonate }) {
                     d="M 80, 80 m -60, 0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0"
                   />
                 </defs>
-                <text className="text-[10.5px] uppercase tracking-[0.22em] fill-current font-medium">
+                <text className="text-[10px] uppercase tracking-[0.24em] fill-current font-mono font-medium">
                   <textPath href="#hero-badge-circle" startOffset="0%">
-                    Scroll Down &middot; FoodBridge Solidarit&eacute; &middot; Rescue &middot;
+                    Scroll Down &middot; FoodBridge Civic Network &middot;
                   </textPath>
                 </text>
               </svg>
@@ -93,7 +92,7 @@ export default function Hero({ onDonate }) {
           </div>
         </div>
 
-        {/* Asymmetrical Editorial Image Composition */}
+        {/* Asymmetrical Editorial Imagery */}
         <div className="mt-16 grid gap-6 lg:grid-cols-12 items-stretch">
           <div className="lg:col-span-8 relative overflow-hidden rounded-2xl border border-ligne bg-fond2 h-[320px] sm:h-[420px] lg:h-[480px]">
             <SmartImg
@@ -101,14 +100,14 @@ export default function Hero({ onDonate }) {
               priority
               className="h-full w-full object-cover filter contrast-[1.03]"
             />
-            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-gris/80 via-gris/40 to-transparent p-6 text-fond flex items-baseline justify-between">
+            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-gris/85 via-gris/40 to-transparent p-6 text-fond flex items-baseline justify-between">
               <div>
-                <p className="label-tag text-jaune">Surplus Collecté</p>
-                <p className="font-display text-lg sm:text-xl font-medium mt-1">
-                  Wholesome produce & cooked batches preserved daily.
+                <p className="label-tag text-jaune">Surplus Intake</p>
+                <p className="font-display text-2xl sm:text-3xl font-normal mt-1">
+                  Wholesome produce &amp; hot batches catalogued daily.
                 </p>
               </div>
-              <span className="hidden sm:inline font-mono text-xs text-fond/70">Ref: KA-01</span>
+              <span className="hidden sm:inline font-mono text-xs text-fond/70">Batch: BLR-01</span>
             </div>
           </div>
 
@@ -119,20 +118,20 @@ export default function Hero({ onDonate }) {
                 priority
                 className="h-full w-full object-cover"
               />
-              <div className="absolute top-4 right-4 bg-fond/90 backdrop-blur px-3 py-1 rounded-md text-xs font-semibold text-vert border border-ligne">
-                Warm Handover
+              <div className="absolute top-4 right-4 bg-fond/95 backdrop-blur px-3 py-1 rounded-md text-xs font-mono font-semibold text-vert border border-ligne">
+                Thermal Handover
               </div>
             </div>
 
             <div className="p-6 rounded-2xl border border-ligne bg-fond2 flex flex-col justify-between">
               <p className="text-xs font-mono uppercase tracking-widest text-grisDoux">
-                Local Impact Horizon
+                Civic Horizon &middot; Bangalore
               </p>
-              <p className="font-display text-2xl sm:text-3xl font-semibold text-gris mt-3 leading-tight">
-                Surplus, not waste, when it is shared with care.
+              <p className="font-display text-2xl sm:text-3xl font-normal text-gris mt-3 leading-tight">
+                Surplus, not waste, when it is handled with care and dignity.
               </p>
-              <div className="mt-5 pt-4 border-t border-ligne flex items-center justify-between text-xs text-grisDoux">
-                <span>Bengaluru Urban Grid</span>
+              <div className="mt-5 pt-4 border-t border-ligne flex items-center justify-between text-xs font-mono text-grisDoux">
+                <span>Direct Shelter Delivery</span>
                 <span className="text-vert font-semibold">100% Non-Profit</span>
               </div>
             </div>
@@ -143,19 +142,19 @@ export default function Hero({ onDonate }) {
         <div className="mt-14 pt-8 border-t border-ligne grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
           <div>
             <dt className="text-xs uppercase tracking-wider text-grisDoux font-mono">01 / Donors</dt>
-            <dd className="font-display text-xl sm:text-2xl text-gris mt-1">Caterers & Cafés</dd>
+            <dd className="font-display text-2xl sm:text-3xl text-gris mt-1">Caterers &amp; Cafés</dd>
           </div>
           <div>
             <dt className="text-xs uppercase tracking-wider text-grisDoux font-mono">02 / Verified Hubs</dt>
-            <dd className="font-display text-xl sm:text-2xl text-gris mt-1">6 Local Centres</dd>
+            <dd className="font-display text-2xl sm:text-3xl text-gris mt-1">6 Active Pantries</dd>
           </div>
           <div>
             <dt className="text-xs uppercase tracking-wider text-grisDoux font-mono">03 / Target Speed</dt>
-            <dd className="font-display text-xl sm:text-2xl text-gris mt-1">&lt; 90 min Collection</dd>
+            <dd className="font-display text-2xl sm:text-3xl text-gris mt-1">&lt; 90 min Dispatch</dd>
           </div>
           <div>
-            <dt className="text-xs uppercase tracking-wider text-grisDoux font-mono">04 / Transparency</dt>
-            <dd className="font-display text-xl sm:text-2xl text-gris mt-1">Zero Food Left</dd>
+            <dt className="text-xs uppercase tracking-wider text-grisDoux font-mono">04 / Traceability</dt>
+            <dd className="font-display text-2xl sm:text-3xl text-gris mt-1">Zero Food Left</dd>
           </div>
         </div>
       </div>

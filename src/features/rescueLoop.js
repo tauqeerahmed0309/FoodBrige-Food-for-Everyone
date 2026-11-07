@@ -68,13 +68,35 @@ export function recordInterest(donation, ngo) {
 }
 export function progressJourney(donation) {
   const index = JOURNEY.indexOf(statusFor(donation)); if (index < 0 || index >= JOURNEY.length - 1) throw new Error('This demonstration journey cannot advance further.')
-  const status = JOURNEY[index + 1]; if (status === 'NGO Interest Received' && !donation.selectedNgo) throw new Error('Select an eligible sample NGO before recording interest.')
+  const status = JOURNEY[index + 1]; if (status === 'NGO Interest Received' && !donation.selectedNgo && !donation.proposedAllocations?.length) throw new Error('Select an eligible sample NGO or confirm a Smart Split allocation before recording interest.')
   return updateDonation(donation.id, (d) => ({ ...d, status, journeyEvents: [...(d.journeyEvents || []), { status, at: new Date().toISOString(), simulated: true }] }))
 }
 export function seedDemo() {
-  const current = readEntries(DEMO_KEY).find((d) => d.id === DEMO_ID); if (current) return current
-  const now = new Date(); const prepared = new Date(now.getTime() - 30 * 60000); const deadline = new Date(now.getTime() + 4 * 3600000)
-  const demo = { id: DEMO_ID, demo: true, savedAt: now.toISOString(), name: 'Demo Restaurant', type: 'Restaurant', category: 'Cooked meals', quantity: '100 prepared vegetarian meals', description: 'Illustrative prepared vegetarian meal donation.', servings: '100', location: 'Indiranagar, Bengaluru', prepared: prepared.toISOString().slice(0, 16), deadline: deadline.toISOString().slice(0, 16), storageCondition: 'Hot-held', storageTemperature: '63', handlingConfirmed: true, status: 'Food Listed', journeyEvents: [{ status: 'Food Listed', at: now.toISOString(), simulated: true }] }
-  saveEntry(DEMO_KEY, demo); return demo
+  const current = readEntries(DEMO_KEY).find((d) => d.id === DEMO_ID)
+  if (current && isAvailableDonation(current)) return current
+  const now = new Date()
+  const prepared = new Date(now.getTime() - 30 * 60000)
+  const deadline = new Date(now.getTime() + 4 * 3600000)
+  const demo = {
+    id: DEMO_ID,
+    demo: true,
+    savedAt: now.toISOString(),
+    name: 'Demo Restaurant',
+    type: 'Restaurant',
+    category: 'Cooked meals',
+    quantity: '100 prepared vegetarian meals',
+    description: 'Illustrative prepared vegetarian meal donation.',
+    servings: '100',
+    location: 'Indiranagar, Bengaluru',
+    prepared: prepared.toISOString(),
+    deadline: deadline.toISOString(),
+    storageCondition: 'Hot-held',
+    storageTemperature: '63',
+    handlingConfirmed: true,
+    status: 'Food Listed',
+    journeyEvents: [{ status: 'Food Listed', at: now.toISOString(), simulated: true }]
+  }
+  replaceEntries(DEMO_KEY, [demo])
+  return demo
 }
 export function impact(donations = allDonations()) { const interests = readEntries(STORAGE_KEYS.interests); return { listed: donations.length, servings: donations.reduce((n, d) => n + (Number(d.servings) || 0), 0), available: donations.filter(isAvailableDonation).filter((d) => statusFor(d) === 'Food Listed').length, interests: interests.length, completed: donations.filter((d) => d.demo && statusFor(d) === 'Distribution Completed').length } }

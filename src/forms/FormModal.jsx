@@ -39,7 +39,7 @@ export default function FormModal({ cfg, initial = {}, onClose }) {
         f.required !== false &&
         (f.type === 'checkbox' ? !v[f.name] : !String(v[f.name]).trim())
       ) {
-        errs[f.name] = 'Ce champ est obligatoire.'
+        errs[f.name] = 'This field is required.'
       }
     })
 
@@ -73,13 +73,13 @@ export default function FormModal({ cfg, initial = {}, onClose }) {
       <Modal title={cfg.successTitle} onClose={onClose}>
         <div className="mt-6 flex items-start gap-3.5 rounded-xl border border-vert/30 bg-vert/10 p-5 text-vert">
           <CheckCircle2 className="shrink-0 mt-0.5" size={20} />
-          <p className="text-sm leading-relaxed text-gris font-medium">
+          <p className="text-sm leading-relaxed text-gris font-medium font-body">
             {cfg.successText}
           </p>
         </div>
         <div className="mt-8 flex justify-end">
           <Button variant="dark" onClick={onClose}>
-            Fermer
+            Close
           </Button>
         </div>
       </Modal>
@@ -88,7 +88,7 @@ export default function FormModal({ cfg, initial = {}, onClose }) {
 
   return (
     <Modal title={cfg.title} onClose={onClose} closeDisabled={status === 'loading'}>
-      <p className="mt-2 text-sm text-grisDoux leading-relaxed">
+      <p className="mt-2 text-sm text-grisDoux leading-relaxed font-body">
         {cfg.intro}
       </p>
 
@@ -124,7 +124,7 @@ export default function FormModal({ cfg, initial = {}, onClose }) {
                 aria-invalid={!!err[f.name]}
                 aria-describedby={err[f.name] ? `e-${f.name}` : undefined}
               >
-                <option value="">Sélectionner…</option>
+                <option value="">Select…</option>
                 {f.options.map((o) => (
                   <option key={o} value={o}>
                     {o}
@@ -184,7 +184,7 @@ export default function FormModal({ cfg, initial = {}, onClose }) {
             className="flex items-center gap-2 rounded-xl bg-red-50 border border-red-200 p-3.5 text-xs text-red-800 sm:col-span-2"
           >
             <AlertTriangle size={16} className="shrink-0" />
-            <span>Impossible d’enregistrer sur cet appareil. Vérifiez que le stockage local de votre navigateur est actif.</span>
+            <span>Could not save your details on this device. Please ensure browser storage is enabled.</span>
           </p>
         )}
 
@@ -195,7 +195,7 @@ export default function FormModal({ cfg, initial = {}, onClose }) {
             disabled={status === 'loading'}
             className="rounded-lg px-4 py-2.5 text-xs font-semibold text-grisDoux hover:text-gris hover:bg-fond2 disabled:opacity-40 transition-colors"
           >
-            Annuler
+            Cancel
           </button>
           <Button
             type="submit"
@@ -205,7 +205,7 @@ export default function FormModal({ cfg, initial = {}, onClose }) {
             {status === 'loading' ? (
               <>
                 <Loader2 size={14} className="animate-spin" />
-                <span>Enregistrement…</span>
+                <span>Saving…</span>
               </>
             ) : (
               cfg.submit
@@ -214,7 +214,7 @@ export default function FormModal({ cfg, initial = {}, onClose }) {
         </div>
 
         <p className="text-[11px] font-mono text-grisDoux sm:col-span-2">
-          * Prototype solidaire : vos saisies restent exclusivement enregistrées dans le stockage local de votre navigateur.
+          * Prototype: details are stored exclusively in this browser&apos;s LocalStorage. Nothing is transmitted to external servers.
         </p>
       </form>
     </Modal>

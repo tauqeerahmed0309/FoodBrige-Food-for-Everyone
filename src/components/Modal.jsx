@@ -59,12 +59,12 @@ export default function Modal({ title, onClose, children, closeDisabled = false 
         <button
           onClick={onClose}
           disabled={closeDisabled}
-          aria-label="Fermer la boîte de dialogue"
+          aria-label="Close dialog"
           className="absolute right-5 top-5 grid h-9 w-9 place-items-center rounded-full border border-ligne bg-fond2 text-gris hover:border-gris transition-colors disabled:opacity-40"
         >
           <X size={18} />
         </button>
-        <h2 id="modal-title" className="pr-12 font-display text-2xl sm:text-3xl font-bold tracking-tight text-gris leading-snug">
+        <h2 id="modal-title" className="pr-12 font-display text-2xl sm:text-3xl font-normal tracking-tight text-gris leading-snug">
           {title}
         </h2>
         {children}

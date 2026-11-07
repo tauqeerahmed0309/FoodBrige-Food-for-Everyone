@@ -13,12 +13,12 @@ export default function Button({
   const isGhost = variant === 'ghost'
 
   const baseStyles =
-    'group relative inline-flex items-center justify-between gap-3 rounded-lg font-medium tracking-tight text-sm transition-all duration-300 disabled:opacity-50 disabled:pointer-events-none'
+    'group relative inline-flex items-center justify-between gap-3.5 rounded-lg text-sm font-medium tracking-tight transition-all duration-300 disabled:opacity-50 disabled:pointer-events-none'
 
   const variantStyles = isPrimary
-    ? 'bg-jaune text-gris hover:bg-[#e4a733]'
+    ? 'bg-jaune text-gris hover:bg-[#b57534]'
     : isDark
-    ? 'bg-gris text-fond hover:bg-[#282828]'
+    ? 'bg-gris text-fond hover:bg-[#222724]'
     : isGhost
     ? 'border border-current text-current hover:bg-black/5'
     : 'bg-jaune text-gris'

@@ -9,21 +9,21 @@ export default function BrandMark({ className = 'h-8 w-8', title = 'FoodBridge' 
       xmlns="http://www.w3.org/2000/svg"
     >
       <rect width="64" height="64" rx="14" fill="currentColor" />
-      {/* Arch bridge curve connecting two sides */}
+      {/* Precision Arch Bridge Arc */}
       <path
-        d="M12 43 C22 22, 42 22, 52 43"
-        stroke="#f1ece1"
-        strokeWidth="4.5"
+        d="M13 44 C23 23, 41 23, 51 44"
+        stroke="#FAF8F5"
+        strokeWidth="4"
         strokeLinecap="round"
       />
-      {/* Golden food sprout / leaf flourishing above the bridge */}
+      {/* Botanical Seed Sprout */}
       <path
-        d="M32 30 C32 17, 44 14, 44 24 C44 31, 35 32, 32 30 Z"
-        fill="#d99b26"
+        d="M32 30 C32 17, 44 15, 44 24 C44 31, 35 32, 32 30 Z"
+        fill="#C4823F"
       />
-      {/* Base seed / meal dish dot */}
-      <circle cx="21" cy="43" r="3" fill="#d99b26" />
-      <circle cx="43" cy="43" r="3" fill="#d99b26" />
+      {/* Anchor Coordinates */}
+      <circle cx="21" cy="44" r="2.8" fill="#C4823F" />
+      <circle cx="43" cy="44" r="2.8" fill="#C4823F" />
     </svg>
   )
 }

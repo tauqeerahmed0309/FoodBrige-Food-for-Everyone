@@ -4,34 +4,37 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Emmaüs A.G.I.R. design tokens
-        fond: '#f1ece1',
-        fond2: '#e7e1d3',
-        gris: '#1b1b1b',
-        grisDoux: '#5f5d57',
-        jaune: '#d99b26',
-        vert: '#235338',
-        vertDoux: '#3a694e',
-        bleu: '#33669b',
-        // Harmonious FoodBridge aliases
-        forest: '#235338',
-        deep: '#1b1b1b',
-        ivory: '#f1ece1',
-        cream: '#e7e1d3',
-        harvest: '#d99b26',
-        sage: '#d8e1d6',
-        ink: '#1b1b1b'
+        // Bespoke Editorial Palette — Non-generic, tactile, organic
+        fond: '#FAF8F5',
+        fond2: '#F1EDE6',
+        fond3: '#E7E1D8',
+        gris: '#141715',
+        grisDoux: '#555B56',
+        jaune: '#C4823F',
+        vert: '#1B3F2F',
+        vertDoux: '#2E5F47',
+        terracotta: '#B65E2A',
+        // Preserved compatibility aliases
+        forest: '#1B3F2F',
+        deep: '#141715',
+        ivory: '#FAF8F5',
+        cream: '#F1EDE6',
+        harvest: '#C4823F',
+        sage: '#D7E0D6',
+        ink: '#141715'
       },
       fontFamily: {
-        display: ['Fraunces', 'Georgia', 'serif'],
-        body: ['Inter', 'system-ui', 'sans-serif']
+        display: ['"Instrument Serif"', 'Georgia', 'serif'],
+        body: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['"Space Mono"', 'monospace']
       },
       lineHeight: {
-        tighter: '0.92',
-        tightest: '0.86'
+        tighter: '0.90',
+        tightest: '0.84'
       },
       letterSpacing: {
-        tighter: '-0.035em'
+        tighter: '-0.04em',
+        tightest: '-0.05em'
       }
     }
   },

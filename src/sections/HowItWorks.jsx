@@ -5,39 +5,39 @@ import { IMG } from '../data/images.js'
 const CHAPTERS = [
   {
     index: '01',
-    title: 'Share with Precision',
-    desc: 'The donor specifies the meal category, prepared timestamp, exact serving count, and temperature handling (hot-held, chilled, or ambient). Meticulous documentation is the first act of care.',
+    title: 'Precision Logging & Provenance',
+    desc: 'The donor specifies the meal category, prepared timestamp, exact serving count, and thermal handling condition (hot-held, chilled, or ambient). Meticulous documentation is the first act of civic care.',
     img: 'kitchen',
     tag: 'Kitchen Preparation'
   },
   {
     index: '02',
-    title: 'Transparent NGO Connection',
-    desc: 'Nearby verified organisations review the listing against their real-time evening capacity. Because deadlines and travel radii are strictly evaluated, no food is promised that cannot be safely retrieved.',
+    title: 'Deterministic Matching & Dispatch',
+    desc: 'Nearby verified organisations review the listing against their real-time evening capacity. Because deadlines and travel radii are strictly evaluated, no food is promised that cannot be safely collected.',
     img: 'connect',
-    tag: 'Partner Matching'
+    tag: 'Pantry Matching'
   },
   {
     index: '03',
-    title: 'Safe Handover & Delivery',
-    desc: 'Volunteers and logistics partners arrive with food-grade thermal containers. Handover timestamps are recorded on the prototype passport, ensuring accountability through to final plate service.',
+    title: 'Temperature-Safe Handover',
+    desc: 'Volunteers and transport partners arrive with food-grade insulated containers. Handover timestamps are recorded on the prototype passport, ensuring accountability through to final plate service.',
     img: 'deliver',
-    tag: 'Community Distribution'
+    tag: 'Community Delivery'
   }
 ]
 
 export default function HowItWorks() {
   return (
-    <section id="parcours" className="py-24 md:py-32 bg-fond2 border-t border-ligne">
+    <section id="how-it-works" className="py-24 md:py-32 bg-fond2 border-t border-ligne">
       <div className="wrap">
         {/* Section Header */}
         <div className="flex items-center justify-between border-b border-ligne pb-4 mb-12">
           <p className="label-tag text-grisDoux">
             <span className="label-index font-mono text-jaune">04</span>
-            <span>Le Parcours · How Food Rescue Works</span>
+            <span>Provenance &amp; Chain of Custody &middot; 3 Phases</span>
           </p>
           <span className="text-xs font-mono text-grisDoux uppercase tracking-wider">
-            3 Étapes Clés
+            Standard Operating Protocol
           </span>
         </div>
 
@@ -45,10 +45,10 @@ export default function HowItWorks() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
             <div>
               <h2 className="h2 text-gris tracking-tight">
-                Le parcours <span className="marker">d’un don.</span>
+                The journey <span className="marker">of a rescued meal.</span>
               </h2>
               <p className="lead mt-4 text-grisDoux">
-                Every rescued meal follows a strict, time-sensitive sequence designed to preserve safety,
+                Every rescued meal follows a strict, time-sensitive protocol designed to preserve food safety,
                 human dignity, and logistical clarity.
               </p>
             </div>
@@ -65,7 +65,7 @@ export default function HowItWorks() {
               key={index}
               className="grid gap-10 lg:grid-cols-12 items-center pt-10 border-t border-ligne first:pt-0 first:border-0"
             >
-              {/* Image Column (Alternating) */}
+              {/* Image Column */}
               <Reveal
                 className={`lg:col-span-6 ${
                   i % 2 === 1 ? 'lg:order-2' : ''
@@ -90,11 +90,11 @@ export default function HowItWorks() {
                 }`}
               >
                 <div className="flex items-baseline gap-4">
-                  <span className="font-display text-6xl sm:text-7xl font-light text-jaune/80 tracking-tight">
+                  <span className="font-display text-6xl sm:text-7xl font-normal text-jaune/90 tracking-tight">
                     {index}
                   </span>
                   <span className="text-xs font-mono uppercase tracking-widest text-grisDoux">
-                    Phase {index} sur 03
+                    Phase {index} of 03
                   </span>
                 </div>
 
@@ -106,9 +106,9 @@ export default function HowItWorks() {
                 </p>
 
                 <div className="mt-8 pt-6 border-t border-ligne flex items-center gap-6 text-xs font-mono text-grisDoux">
-                  <span>Temps estimé: &lt; 45 min</span>
+                  <span>Target Elapsed: &lt; 45 min</span>
                   <span>&bull;</span>
-                  <span className="text-vert font-semibold">Traçabilité Active</span>
+                  <span className="text-vert font-semibold">Verified Safe Handover</span>
                 </div>
               </Reveal>
             </div>
